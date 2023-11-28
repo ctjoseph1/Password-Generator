@@ -130,7 +130,12 @@ function getPasswordOptions() {
   console.log('success')
   //ask question below
   let upperCasedCharactersResponse = confirm("Include uppercase characters?") 
-
+  let lowerCasedCharacters = confirm ('include lower case characters?')
+  let numericCharacters = confirm ('include numeric characters?')
+  let specialCharacters = confirm ('include special characters?')
+  
+ /*if (userResponse = upperCasedCharacters.length)
+ console.log('success') << Not sure I need this */
 } else {
   console.log('This number is not between range') 
  
