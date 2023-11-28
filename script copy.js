@@ -23,7 +23,7 @@ alert- 'your password has been generated below'
   -For the above, will need to code the extraction of a random element from the listed arrays
   -Will need to set a rule for password length
   -Have the password appear in the UI once all choices are selected
-*/ 
+*/
 
 
 // Array of special characters to be included in password
@@ -120,48 +120,62 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  let userResponse = prompt('How long should your password be? (Please put a number between 8 and 128)')
-  userResponse = parseInt(userResponse); //parseInt is used in Java for converting a string value to an integer by using the method parseInt()
-  console.log(userResponse) 
-  if (!userResponse) {
-  console.log('Please enter a number') //can replace console.log with alert so it appears in the UI
-  }
-  else if (userResponse < 8 || userResponse > 128) { // Conditional logic to catch if a user inputs an invalid numeric range
-  alert("Please put a number between 8 and 128.") // An alert to prompt the user of the valid input range
-  getPasswordOptions() // After the alert we can invoke the function to start from the beginning
-  }
- else if (userResponse >= 8 && userResponse <= 128) {
-  console.log('success')
-  //ask question below
-  let upperCasedCharactersResponse = confirm("Include uppercase characters?") 
-  let lowerCasedCharacters = confirm ('include lower case characters?')
-  let numericCharacters = confirm ('include numeric characters?')
-  let specialCharacters = confirm ('include special characters?')
-  console.log("What is upperCasedCharactersResponse: ", upperCasedCharactersResponse)
-  console.log("What is lowerCasedCharacters: ", lowerCasedCharacters)
-  console.log("What is numericCharacters: ", numericCharacters)
-  console.log("What is specialCharacters: ", specialCharacters)
- /* Create a conditional block that checks to see if upperCasedCharactersResponse has 
- a true value If the value is true concatenate upperCasedCharacters array 
- to a new array so we can use a randomized character function /*
+  do {
+    var userResponse = prompt('How long should your password be? (Please put a number between 8 and 128)')
+    userResponse = parseInt(userResponse);
 
-//conditional statement for the above true/false values
+    if(!userResponse) {
+      console.log('Please enter a number')
+    } else if (userResponse < 8 || userResponse > 128) {
+      console.log("Please put a number between 8 and 128.") 
+    }
+  } while (!userResponse || userResponse < 8 || userResponse > 128)
 
 
- /*if (userResponse = upperCasedCharacters.length)
- console.log('success') << Not sure I need this */
-} else {
-  console.log('This number is not between range') 
- 
-} return userResponse
+  do {
+    var upperCasedCharactersResponse = confirm("Include uppercase characters?")
+    var lowerCasedCharactersResponse = confirm('include lower case characters?')
+    var numericCharacters = confirm('include numeric characters?')
+    var specialCharacters = confirm('include special characters?')
 
-} 
+    console.log("What is upperCasedCharactersResponse: ", upperCasedCharactersResponse)
+    console.log("What is lowerCasedCharacters: ", lowerCasedCharactersResponse)
+    console.log("What is numericCharacters: ", numericCharacters)
+    console.log("What is specialCharacters: ", specialCharacters)
+
+    if(!upperCasedCharactersResponse && !lowerCasedCharactersResponse && !numericCharacters && !specialCharacters) {
+      alert("Please select ok for at least one of the character type options!")
+    }
+
+  } while (!upperCasedCharactersResponse && !lowerCasedCharactersResponse && !numericCharacters && !specialCharacters)
+
+
+     /* Create a conditional block that checks to see if upperCasedCharactersResponse has 
+    a true value If the value is true concatenate/join two strings upperCasedCharacters array 
+    to a new array so we can use a randomized character function */
+
+    var possibleCharacters = [];
+
+    if(upperCasedCharactersResponse) {
+      possibleCharacters = possibleCharacters.concat(upperCasedCharacters)
+    }
+
+    if(lowerCasedCharactersResponse) {
+      possibleCharacters = possibleCharacters.concat(lowerCasedCharacters)
+    }
+
+
+    console.log(possibleCharacters)
+
+    // Math.random()
+
+}
 
 
 // let userResponse = prompt('Do you want to include lowercase characters?')
-  //let userResponse = prompt('Do you want to include Uppercase characters?')
-  //let userResponse = prompt('Do you want to include Numeric characters?')
-  //let userResponse = prompt('Do you want to include Special characters?')
+//let userResponse = prompt('Do you want to include Uppercase characters?')
+//let userResponse = prompt('Do you want to include Numeric characters?')
+//let userResponse = prompt('Do you want to include Special characters?')
 
 
 
@@ -175,7 +189,7 @@ function getPasswordOptions() {
 function getRandom(arr) {
   return Math.floor(Math.random() * arr.length)
 }
-*/ 
+*/
 
 
 // Function to generate password with user input
