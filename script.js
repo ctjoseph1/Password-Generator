@@ -126,6 +126,10 @@ function getPasswordOptions() {
   if (!userResponse) {
   console.log('Please enter a number') //can replace console.log with alert so it appears in the UI
   }
+  else if (userResponse < 8 || userResponse > 128) { // Conditional logic to catch if a user inputs an invalid numeric range
+  alert("Please put a number between 8 and 128.") // An alert to prompt the user of the valid input range
+  getPasswordOptions() // After the alert we can invoke the function to start from the beginning
+  }
  else if (userResponse >= 8 && userResponse <= 128) {
   console.log('success')
   //ask question below
@@ -133,7 +137,13 @@ function getPasswordOptions() {
   let lowerCasedCharacters = confirm ('include lower case characters?')
   let numericCharacters = confirm ('include numeric characters?')
   let specialCharacters = confirm ('include special characters?')
-  
+  console.log("What is upperCasedCharactersResponse: ", upperCasedCharactersResponse)
+  console.log("What is lowerCasedCharacters: ", lowerCasedCharacters)
+  console.log("What is numericCharacters: ", numericCharacters)
+  console.log("What is specialCharacters: ", specialCharacters)
+//conditional statement for the above true/false values
+
+
  /*if (userResponse = upperCasedCharacters.length)
  console.log('success') << Not sure I need this */
 } else {
