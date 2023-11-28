@@ -129,6 +129,7 @@ function getPasswordOptions() {
  else if (userResponse >= 8 && userResponse <= 128) {
   console.log('success')
   //ask question below
+  let upperCasedCharactersResponse = confirm("Include uppercase characters?") 
 
 } else {
   console.log('This number is not between range') 
