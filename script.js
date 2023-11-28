@@ -3,10 +3,11 @@ Generate a password when the button is clicked = Function option
 Present a series of promps for password criteria which is:
 
 >Length of password (At least 8 characters but no more than 128)- I would prompt the user to select how long they want their password to be?
+THEN
 > Character types (probably true/false statements for these):
-Need the user to select at least 1 of the below ()
-  -Lowercase I would prompt the user to decide if they want this (Yes/No option)
-  -Uppercase I would prompt the user to decide if they want this (Yes/No option)
+Need the user to select at least 1 of the below (character options included in arrays)
+  -Lowercase I would prompt the user to decide if they want this (Yes/No option- Boolean)
+  -Uppercase I would prompt the user to decide if they want this (Yes/No option-Boolean)
   -Numeric I would prompt the user to decide if they want this (Yes/No option)
 
 else if none of them are selected, add 'you need at least one character type' prompt message
@@ -14,6 +15,14 @@ else if none of them are selected, add 'you need at least one character type' pr
   
    Once all options are selected/ 'success' in the above criteria, password will be generated
    
+>Code should validate for each input and at least one character type should be selected
+prompt? somehting like 'your password will include Lowercase etc
+
+>Once prompts are answered then the password should be generated and displayed in an alert or written to the page 
+alert- 'your password has been generated below'
+  -For the above, will need to code the extraction of a random element from the listed arrays
+  -Will need to set a rule for password length
+  -Have the password appear in the UI once all choices are selected
 */ 
 
 
@@ -115,19 +124,32 @@ function getPasswordOptions() {
   userResponse = parseInt(userResponse); //parseInt is used in Java for converting a string value to an integer by using the method parseInt()
   console.log(userResponse) 
   if (!userResponse) {
-  console.log('it is not a number') //can replace console.log with alert so it appears in the UI
+  console.log('Please enter a number') //can replace console.log with alert so it appears in the UI
   }
  else if (userResponse >= 8 && userResponse <= 128) {
-  //ask question below
   console.log('success')
-  
-  } else {
-  console.log('is not a number between range') 
+  //ask question below
 
-  } return userResponse
+} else {
+  console.log('This number is not between range') 
+ 
+} return userResponse
+
+} 
 
 
-}
+// let userResponse = prompt('Do you want to include lowercase characters?')
+  //let userResponse = prompt('Do you want to include Uppercase characters?')
+  //let userResponse = prompt('Do you want to include Numeric characters?')
+  //let userResponse = prompt('Do you want to include Special characters?')
+
+
+
+
+
+
+
+
 
 /* Function for getting a random element from an array
 function getRandom(arr) {
@@ -147,7 +169,7 @@ var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = generatePassword(); //length.specialCharacters ??
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
@@ -155,6 +177,6 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
-
+//return 'password generated text'
 
 // If the user confirms one of these, then they will not receive a prompt to change option: var specialCharacters, var numericCharacters, etc 
