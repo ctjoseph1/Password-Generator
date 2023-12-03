@@ -133,41 +133,49 @@ function getPasswordOptions() {
 
 
   do {
-    var upperCasedCharactersResponse = confirm("Include uppercase characters?")
+    var upperCasedCharactersResponse = confirm("include uppercase characters?")
     var lowerCasedCharactersResponse = confirm('include lower case characters?')
-    var numericCharacters = confirm('include numeric characters?')
-    var specialCharacters = confirm('include special characters?')
+    var numericCharactersResponse = confirm('include numeric characters?')
+    var specialCharactersResponse = confirm('include special characters?')
 
     console.log("What is upperCasedCharactersResponse: ", upperCasedCharactersResponse)
-    console.log("What is lowerCasedCharacters: ", lowerCasedCharactersResponse)
-    console.log("What is numericCharacters: ", numericCharacters)
-    console.log("What is specialCharacters: ", specialCharacters)
+    console.log("What is lowerCasedCharactersResponse: ", lowerCasedCharactersResponse)
+    console.log("What is numericCharactersResponse: ", numericCharactersResponse)
+    console.log("What is specialCharactersResponse: ", specialCharactersResponse)
 
-    if(!upperCasedCharactersResponse && !lowerCasedCharactersResponse && !numericCharacters && !specialCharacters) {
+    if(!upperCasedCharactersResponse && !lowerCasedCharactersResponse && !numericCharactersResponse && !specialCharactersResponse) {
       alert("Please select ok for at least one of the character type options!")
     }
 
-  } while (!upperCasedCharactersResponse && !lowerCasedCharactersResponse && !numericCharacters && !specialCharacters)
+  } while (!upperCasedCharactersResponse && !lowerCasedCharactersResponse && !numericCharactersResponse && !specialCharactersResponse) 
+  //&& returns true if both statements (either sideof the &&) are true.
 
 
      /* Create a conditional block that checks to see if upperCasedCharactersResponse has 
     a true value If the value is true concatenate/join two strings upperCasedCharacters array 
     to a new array so we can use a randomized character function */
 
-    var possibleCharacters = [];
+  var possibleCharacters = [];
 
-    if(upperCasedCharactersResponse) {
-      possibleCharacters = possibleCharacters.concat(upperCasedCharacters)
+   if(upperCasedCharactersResponse) {
+  possibleCharacters = possibleCharacters.concat(upperCasedCharacters)
+   }
+
+  if(lowerCasedCharactersResponse) {
+  possibleCharacters = possibleCharacters.concat(lowerCasedCharacters)
+  }
+
+  if(numericCharactersResponse) {
+    possibleCharacters = possibleCharacters.concat(numericCharacters)
     }
 
-    if(lowerCasedCharactersResponse) {
-      possibleCharacters = possibleCharacters.concat(lowerCasedCharacters)
-    }
+  if(specialCharactersResponse) {
+      possibleCharacters = possibleCharacters.concat(numericCharacters)
+      }
 
+console.log(possibleCharacters)
 
-    console.log(possibleCharacters)
-
-    // Math.random()
+ Math.random()
 
 }
 
@@ -176,13 +184,6 @@ function getPasswordOptions() {
 //let userResponse = prompt('Do you want to include Uppercase characters?')
 //let userResponse = prompt('Do you want to include Numeric characters?')
 //let userResponse = prompt('Do you want to include Special characters?')
-
-
-
-
-
-
-
 
 
 /* Function for getting a random element from an array
@@ -195,7 +196,7 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   getPasswordOptions()
-  //if statement for Ok and cancel
+  
 }
 
 // Get references to the #generate element
@@ -203,7 +204,7 @@ var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword(); //length.specialCharacters ??
+  var password = generatePassword();
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
@@ -213,4 +214,5 @@ function writePassword() {
 generateBtn.addEventListener('click', writePassword);
 //return 'password generated text'
 
-// If the user confirms one of these, then they will not receive a prompt to change option: var specialCharacters, var numericCharacters, etc 
+// If the user confirms one of these, then they will not receive a prompt to change option: 
+//var specialCharacters, var numericCharacters, etc 
