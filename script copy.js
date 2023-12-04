@@ -170,12 +170,12 @@ function getPasswordOptions() {
     }
 
   if(specialCharactersResponse) {
-      possibleCharacters = possibleCharacters.concat(numericCharacters)
+      possibleCharacters = possibleCharacters.concat(specialCharacters)
       }
 
 console.log(possibleCharacters)
 
- Math.random()
+
 
 }
 
@@ -195,8 +195,15 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-  getPasswordOptions()
-  
+const options = getPasswordOptions()
+  return {
+    userResponse,
+    upperCasedCharactersResponse,
+    lowerCasedCharactersResponse,
+    specialCharactersResponse,
+
+  }
+  Math.random()
 }
 
 // Get references to the #generate element
@@ -213,6 +220,10 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
 //return 'password generated text'
+function getRandom(arr) {
+  var randomIndex = Math.floor(Math.random() * arr.length);
+  return arr[randomIndex];
+}
 
 // If the user confirms one of these, then they will not receive a prompt to change option: 
 //var specialCharacters, var numericCharacters, etc 
