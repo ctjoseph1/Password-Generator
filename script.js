@@ -120,73 +120,62 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  let userResponse = prompt('How long should your password be? (Please put a number between 8 and 128)')
-  userResponse = parseInt(userResponse); //parseInt is used in Java for converting a string value to an integer by using the method parseInt()
-  console.log(userResponse)
-  if (!userResponse) {
-    console.log('Please enter a number') //can replace console.log with alert so it appears in the UI
-  }
-  else if (userResponse < 8 || userResponse > 128) { // Conditional logic to catch if a user inputs an invalid numeric range
-    alert("Please put a number between 8 and 128.") // An alert to prompt the user of the valid input range
-    getPasswordOptions() // After the alert we can invoke the function to start from the beginning
-  }
-  else if (userResponse >= 8 && userResponse <= 128) {
-    console.log('success')
-    //ask question below
-    // let upperCasedCharactersResponse = confirm("Include uppercase characters?")
-    // let lowerCasedCharacters = confirm('include lower case characters?')
-    // let numericCharacters = confirm('include numeric characters?')
-    // let specialCharacters = confirm('include special characters?')
-    // console.log("What is upperCasedCharactersResponse: ", upperCasedCharactersResponse)
-    // console.log("What is lowerCasedCharacters: ", lowerCasedCharacters)
-    // console.log("What is numericCharacters: ", numericCharacters)
-    // console.log("What is specialCharacters: ", specialCharacters)
+  do {
+    var userResponse = prompt('How long should your password be? (Please put a number between 8 and 128)')
+    userResponse = parseInt(userResponse);
+
+    if(!userResponse) {
+      console.log('Please enter a number')
+    } else if (userResponse < 8 || userResponse > 128) {
+      console.log("Please put a number between 8 and 128.") 
+    }
+  } while (!userResponse || userResponse < 8 || userResponse > 128)
 
 
-    ///////////////////////////////
+  do {
+    var upperCasedCharactersResponse = confirm("include uppercase characters?")
+    var lowerCasedCharactersResponse = confirm('include lower case characters?')
+    var numericCharactersResponse = confirm('include numeric characters?')
+    var specialCharactersResponse = confirm('include special characters?')
 
-    // let upperCasedCharactersResponse = confirm("Include uppercase characters?")
-    // let lowerCasedCharacters = confirm('include lower case characters?')
-    // let numericCharacters = confirm('include numeric characters?')
-    // let specialCharacters = confirm('include special characters?')
+    console.log("What is upperCasedCharactersResponse: ", upperCasedCharactersResponse)
+    console.log("What is lowerCasedCharactersResponse: ", lowerCasedCharactersResponse)
+    console.log("What is numericCharactersResponse: ", numericCharactersResponse)
+    console.log("What is specialCharactersResponse: ", specialCharactersResponse)
 
-    // while (!upperCasedCharactersResponse && !lowerCasedCharacters && !numericCharacters && !specialCharacters) {
-    //   upperCasedCharactersResponse = confirm("Include uppercase characters?")
-    //   lowerCasedCharacters = confirm('include lower case characters?')
-    //   numericCharacters = confirm('include numeric characters?')
-    //   specialCharacters = confirm('include special characters?')
-    // }
+    if(!upperCasedCharactersResponse && !lowerCasedCharactersResponse && !numericCharactersResponse && !specialCharactersResponse) {
+      alert("Please select ok for at least one of the character type options!")
+    }
 
-
-    ////////////////////////
-
-    do {
-      let upperCasedCharactersResponse = confirm("Include uppercase characters?")
-      let lowerCasedCharacters = confirm('include lower case characters?')
-      let numericCharacters = confirm('include numeric characters?')
-      let specialCharacters = confirm('include special characters?')
-
-      console.log("What is upperCasedCharactersResponse: ", upperCasedCharactersResponse)
-      console.log("What is lowerCasedCharacters: ", lowerCasedCharacters)
-      console.log("What is numericCharacters: ", numericCharacters)
-      console.log("What is specialCharacters: ", specialCharacters)
-
-    } while (!upperCasedCharactersResponse && !lowerCasedCharacters && !numericCharacters && !specialCharacters)
+  } while (!upperCasedCharactersResponse && !lowerCasedCharactersResponse && !numericCharactersResponse && !specialCharactersResponse) 
+  //&& returns true if both statements (either sideof the &&) are true.
 
 
-    /* Create a conditional block that checks to see if upperCasedCharactersResponse has 
+     /* Create a conditional block that checks to see if upperCasedCharactersResponse has 
     a true value If the value is true concatenate/join two strings upperCasedCharacters array 
-    to a new array so we can use a randomized character function /*
-   
-   //conditional statement for the above true/false values
-   
-   
-    /*if (userResponse = upperCasedCharacters.length)
-    console.log('success') << Not sure I need this */
-  } else {
-    console.log('This number is not between range')
+    to a new array so we can use a randomized character function */
 
-  } return userResponse
+  var possibleCharacters = [];
+
+   if(upperCasedCharactersResponse) {
+  possibleCharacters = possibleCharacters.concat(upperCasedCharacters)
+   }
+
+  if(lowerCasedCharactersResponse) {
+  possibleCharacters = possibleCharacters.concat(lowerCasedCharacters)
+  }
+
+  if(numericCharactersResponse) {
+    possibleCharacters = possibleCharacters.concat(numericCharacters)
+    }
+
+  if(specialCharactersResponse) {
+      possibleCharacters = possibleCharacters.concat(specialCharacters)
+      }
+
+console.log(possibleCharacters)
+
+
 
 }
 
@@ -195,13 +184,6 @@ function getPasswordOptions() {
 //let userResponse = prompt('Do you want to include Uppercase characters?')
 //let userResponse = prompt('Do you want to include Numeric characters?')
 //let userResponse = prompt('Do you want to include Special characters?')
-
-
-
-
-
-
-
 
 
 /* Function for getting a random element from an array
@@ -213,8 +195,15 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-  getPasswordOptions()
-  //if statement for Ok and cancel
+const options = getPasswordOptions()
+  return {
+    userResponse,
+    upperCasedCharactersResponse,
+    lowerCasedCharactersResponse,
+    specialCharactersResponse,
+
+  }
+  Math.random()
 }
 
 // Get references to the #generate element
@@ -222,7 +211,7 @@ var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword(); //length.specialCharacters ??
+  var password = generatePassword();
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
@@ -231,5 +220,10 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
 //return 'password generated text'
+function getRandom(arr) {
+  var randomIndex = Math.floor(Math.random() * arr.length);
+  return arr[randomIndex];
+}
 
-// If the user confirms one of these, then they will not receive a prompt to change option: var specialCharacters, var numericCharacters, etc 
+// If the user confirms one of these, then they will not receive a prompt to change option: 
+//var specialCharacters, var numericCharacters, etc 
