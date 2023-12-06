@@ -1,5 +1,6 @@
 # Password-Generator
 Password Generator project
+Link to live site: https://ctjoseph1.github.io/Password-Generator/
 
 **Description**
 The project at hand is to create a password generator where a user can define a specification for characters they wish to be included i.e Lower case, upper case, numeric values, and or special characters along with how long they wish for their password to be. It will work by the user clicking a button in the UI, selecting the said options, then as a developer I would use javascript methods to generate a final random password for the user and have it appear.
