@@ -119,9 +119,10 @@ var upperCasedCharacters = [
 ];
 
 // Function to prompt user for password options
-function getPasswordOptions() {
+function generatePassword() {
+  var userResponse
   do {
-    var userResponse = prompt('How long should your password be? (Please put a number between 8 and 128)')
+    userResponse = prompt('How long should your password be? (Please put a number between 8 and 128)')
     userResponse = parseInt(userResponse);
 
     if(!userResponse) {
@@ -175,7 +176,13 @@ function getPasswordOptions() {
 
 console.log(possibleCharacters)
 
+var password = ''
 
+for (i=0; i < userResponse; i++) {
+  var selectedCharacter = possibleCharacters[Math.floor(Math.random() * possibleCharacters.length)]
+  password = password + selectedCharacter
+}
+return password
 
 }
 
@@ -194,17 +201,17 @@ function getRandom(arr) {
 
 
 // Function to generate password with user input
-function generatePassword() {
-const options = getPasswordOptions()
-  return {
-    userResponse,
-    upperCasedCharactersResponse,
-    lowerCasedCharactersResponse,
-    specialCharactersResponse,
+// function generatePassword() {
+// const options = getPasswordOptions()
+//   return {
+//     userResponse,
+//     upperCasedCharactersResponse,
+//     lowerCasedCharactersResponse,
+//     specialCharactersResponse,
 
-  }
-  Math.random()
-}
+//   }
+//   Math.random()
+// }
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
